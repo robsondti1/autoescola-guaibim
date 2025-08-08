@@ -1,0 +1,1128 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Auto Escola Guaibim - Sua CNH com Qualidade e Segurança</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        'primary': '#1e40af',
+                        'secondary': '#f59e0b',
+                        'accent': '#10b981',
+                        'dark': '#1f2937',
+                        'light': '#f8fafc'
+                    },
+                    fontFamily: {
+                        'inter': ['Inter', 'sans-serif'],
+                        'poppins': ['Poppins', 'sans-serif']
+                    },
+                    animation: {
+                        'fade-in': 'fadeIn 0.6s ease-out',
+                        'slide-up': 'slideUp 0.6s ease-out',
+                        'float': 'float 3s ease-in-out infinite',
+                        'pulse-slow': 'pulse 2s infinite'
+                    }
+                }
+            }
+        }
+    </script>
+    
+    <style>
+        body {
+            font-family: 'Inter', sans-serif;
+        }
+        
+        .gradient-bg {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+        }
+        
+        .gradient-text {
+            background: linear-gradient(135deg, #1e40af, #f59e0b);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+        
+        .glass-effect {
+            background: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+        }
+        
+        .card-hover {
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+        
+        .card-hover:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.25);
+        }
+        
+        .btn-gradient {
+            background: linear-gradient(135deg, #1e40af 0%, #3b82f6 100%);
+        }
+        
+        .btn-gradient:hover {
+            background: linear-gradient(135deg, #1d4ed8 0%, #2563eb 100%);
+        }
+        
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+        
+        @keyframes slideUp {
+            from { 
+                opacity: 0; 
+                transform: translateY(30px); 
+            }
+            to { 
+                opacity: 1; 
+                transform: translateY(0); 
+            }
+        }
+        
+        @keyframes float {
+            0%, 100% { transform: translateY(0px); }
+            50% { transform: translateY(-10px); }
+        }
+        
+        .section-divider {
+            height: 3px;
+            background: linear-gradient(90deg, transparent, #1e40af, #f59e0b, transparent);
+        }
+        
+        .page-section {
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+        }
+        
+        .page-section.hidden {
+            display: none;
+        }
+    </style>
+</head>
+<body class="bg-white font-inter">
+    <!-- WhatsApp Floating Button -->
+    <div class="fixed bottom-6 right-6 z-50">
+        <a href="https://wa.me/c/557599252324" 
+           target="_blank" 
+           class="bg-green-500 hover:bg-green-600 text-white p-4 rounded-full shadow-2xl transition-all hover:scale-110 animate-pulse-slow">
+            <i class="fab fa-whatsapp text-2xl"></i>
+        </a>
+    </div>
+
+    <!-- Header -->
+    <header class="fixed w-full top-0 z-40 bg-white/80 backdrop-blur-md border-b border-gray-100">
+        <nav class="container mx-auto px-6 py-4">
+            <div class="flex justify-between items-center">
+                <!-- Logo -->
+                <div class="flex items-center space-x-3">
+                    <div class="w-12 h-12 bg-gradient-to-r from-primary to-secondary rounded-full flex items-center justify-center shadow-lg">
+                        <i class="fas fa-steering-wheel text-white text-xl"></i>
+                    </div>
+                    <div>
+                        <h1 class="text-xl font-bold text-dark">Auto Escola</h1>
+                        <p class="text-sm font-medium gradient-text">Guaibim</p>
+                    </div>
+                </div>
+                
+                <!-- Desktop Menu -->
+                <ul class="hidden md:flex space-x-8 text-dark font-medium">
+                    <li><a href="#inicio" class="nav-link hover:text-primary transition-colors cursor-pointer">Início</a></li>
+                    <li><a href="#sobre" class="nav-link hover:text-primary transition-colors cursor-pointer">Sobre</a></li>
+                    <li><a href="#servicos" class="nav-link hover:text-primary transition-colors cursor-pointer">Serviços</a></li>
+                    <li><a href="#galeria" class="nav-link hover:text-primary transition-colors cursor-pointer">Galeria</a></li>
+                    <li><a href="#contato" class="nav-link hover:text-primary transition-colors cursor-pointer">Contato</a></li>
+                </ul>
+
+                <!-- CTA Button -->
+                <a href="#matricula" class="hidden md:block bg-primary text-white px-6 py-3 rounded-full hover:bg-blue-700 transition-all font-medium shadow-lg hover:shadow-xl">
+                    Matricule-se
+                </a>
+
+                <!-- Mobile Menu Button -->
+                <button class="md:hidden text-dark p-2" id="mobile-menu-btn">
+                    <i class="fas fa-bars text-xl"></i>
+                </button>
+            </div>
+
+            <!-- Mobile Menu -->
+            <div class="md:hidden mt-4 hidden bg-white rounded-lg shadow-lg p-4" id="mobile-menu">
+                <ul class="space-y-3">
+                    <li><a href="#inicio" class="nav-link block py-2 text-dark hover:text-primary transition-colors">Início</a></li>
+                    <li><a href="#sobre" class="nav-link block py-2 text-dark hover:text-primary transition-colors">Sobre</a></li>
+                    <li><a href="#servicos" class="nav-link block py-2 text-dark hover:text-primary transition-colors">Serviços</a></li>
+                    <li><a href="#galeria" class="nav-link block py-2 text-dark hover:text-primary transition-colors">Galeria</a></li>
+                    <li><a href="#contato" class="nav-link block py-2 text-dark hover:text-primary transition-colors">Contato</a></li>
+                    <li><a href="#matricula" class="block py-2 bg-primary text-white rounded-lg text-center hover:bg-blue-700 transition-colors">Matricule-se</a></li>
+                </ul>
+            </div>
+        </nav>
+    </header>
+
+    <!-- Main Content -->
+    <main class="pt-20">
+        <!-- Início Section -->
+        <section id="inicio" class="page-section">
+            <div class="w-full">
+                <!-- Hero Section -->
+                <div class="relative min-h-screen flex items-center justify-center overflow-hidden">
+                    <!-- Background -->
+                    <div class="absolute inset-0 bg-gradient-to-br from-primary via-blue-600 to-secondary"></div>
+                    <div class="absolute inset-0 bg-black/20"></div>
+                    
+                    <!-- Background Image -->
+                    <div class="absolute inset-0 opacity-20">
+                        <img src="keys/driving-hero-bg?prompt=Professional%20driving%20instructor%20teaching%20student%20in%20modern%20car%2C%20clean%20background%2C%20professional%20atmosphere%20Bahia%20Brazil" 
+                             alt="Background" 
+                             class="w-full h-full object-cover">
+                    </div>
+                    
+                    <div class="relative z-10 container mx-auto px-6 text-center text-white">
+                        <h1 class="text-5xl md:text-7xl font-bold mb-6 animate-slide-up">
+                            Sua <span class="text-secondary">CNH</span> com
+                        </h1>
+                        <h2 class="text-4xl md:text-6xl font-bold mb-8 animate-slide-up text-secondary">
+                            Qualidade & Segurança
+                        </h2>
+                        <p class="text-xl md:text-2xl mb-10 max-w-3xl mx-auto leading-relaxed opacity-90 animate-fade-in">
+                            Auto Escola Guaibim em Valença-BA. Tradição e confiança na formação de condutores responsáveis.
+                        </p>
+                        
+                        <div class="flex flex-col sm:flex-row gap-4 justify-center items-center animate-slide-up">
+                            <a href="#matricula" class="btn-gradient text-white px-8 py-4 rounded-full text-lg font-semibold hover:shadow-2xl transition-all">
+                                <i class="fas fa-graduation-cap mr-2"></i>
+                                Começar Agora
+                            </a>
+                            <a href="https://wa.me/c/557599252324" target="_blank" class="bg-green-500 text-white px-8 py-4 rounded-full text-lg font-semibold hover:bg-green-600 transition-all hover:shadow-2xl">
+                                <i class="fab fa-whatsapp mr-2"></i>
+                                WhatsApp
+                            </a>
+                        </div>
+                        
+                        <!-- Stats -->
+                        <div class="grid grid-cols-2 md:grid-cols-4 gap-6 mt-16 max-w-4xl mx-auto">
+                            <div class="text-center animate-fade-in">
+                                <div class="text-3xl md:text-4xl font-bold text-secondary">100%</div>
+                                <div class="text-sm md:text-base opacity-80">Comprometimento</div>
+                            </div>
+                            <div class="text-center animate-fade-in">
+                                <div class="text-3xl md:text-4xl font-bold text-secondary">A+B+AB</div>
+                                <div class="text-sm md:text-base opacity-80">Categorias</div>
+                            </div>
+                            <div class="text-center animate-fade-in">
+                                <div class="text-3xl md:text-4xl font-bold text-secondary">Valença</div>
+                                <div class="text-sm md:text-base opacity-80">Bahia</div>
+                            </div>
+                            <div class="text-center animate-fade-in">
+                                <div class="text-3xl md:text-4xl font-bold text-secondary">24/7</div>
+                                <div class="text-sm md:text-base opacity-80">Suporte WhatsApp</div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Scroll Indicator -->
+                    <div class="absolute bottom-8 left-1/2 transform -translate-x-1/2 text-white animate-bounce">
+                        <i class="fas fa-chevron-down text-2xl"></i>
+                    </div>
+                </div>
+
+                <!-- Features Section -->
+                <div class="py-20 bg-light">
+                    <div class="container mx-auto px-6">
+                        <div class="text-center mb-16">
+                            <h2 class="text-4xl md:text-5xl font-bold text-dark mb-4">
+                                Por que escolher a <span class="gradient-text">Guaibim?</span>
+                            </h2>
+                            <div class="section-divider w-24 mx-auto mb-6"></div>
+                            <p class="text-xl text-gray-600 max-w-2xl mx-auto">
+                                Excelência em ensino, estrutura moderna e tradição em Valença-BA
+                            </p>
+                        </div>
+                        
+                        <div class="grid md:grid-cols-3 gap-8">
+                            <div class="card-hover bg-white p-8 rounded-2xl shadow-lg text-center">
+                                <div class="w-20 h-20 mx-auto mb-6 bg-gradient-to-r from-primary to-secondary rounded-2xl flex items-center justify-center">
+                                    <i class="fas fa-map-marker-alt text-white text-2xl"></i>
+                                </div>
+                                <h3 class="text-2xl font-bold mb-4 text-dark">Localização Estratégica</h3>
+                                <p class="text-gray-600">Av ACM, S/N, Jacaré - Valença/BA. Fácil acesso e localização central</p>
+                            </div>
+
+                            <div class="card-hover bg-white p-8 rounded-2xl shadow-lg text-center">
+                                <div class="w-20 h-20 mx-auto mb-6 bg-gradient-to-r from-secondary to-accent rounded-2xl flex items-center justify-center">
+                                    <i class="fas fa-certificate text-white text-2xl"></i>
+                                </div>
+                                <h3 class="text-2xl font-bold mb-4 text-dark">Todas as Categorias</h3>
+                                <p class="text-gray-600">1ª Habilitação A, B e AB, Adição, Mudança, Reciclagem e Renovação</p>
+                            </div>
+
+                            <div class="card-hover bg-white p-8 rounded-2xl shadow-lg text-center">
+                                <div class="w-20 h-20 mx-auto mb-6 bg-gradient-to-r from-accent to-primary rounded-2xl flex items-center justify-center">
+                                    <i class="fas fa-headset text-white text-2xl"></i>
+                                </div>
+                                <h3 class="text-2xl font-bold mb-4 text-dark">Suporte Completo</h3>
+                                <p class="text-gray-600">Acompanhamento personalizado via WhatsApp e Instagram @autoescolaguaibim</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Sobre Section -->
+        <section id="sobre" class="page-section hidden">
+            <div class="w-full py-20">
+                <div class="container mx-auto px-6">
+                    <div class="grid md:grid-cols-2 gap-12 items-center">
+                        <div>
+                            <h2 class="text-4xl md:text-5xl font-bold text-dark mb-6">
+                                Sobre a <span class="gradient-text">Auto Escola Guaibim</span>
+                            </h2>
+                            <div class="section-divider w-24 mb-8"></div>
+                            
+                            <p class="text-lg text-gray-600 mb-6 leading-relaxed">
+                                A Auto Escola Guaibim é uma instituição sólida e confiável em Valença-BA, 
+                                comprometida com a formação de condutores responsáveis e preparados para o trânsito.
+                            </p>
+                            
+                            <p class="text-lg text-gray-600 mb-8 leading-relaxed">
+                                Nossa missão é proporcionar uma educação no trânsito de qualidade, 
+                                com metodologia moderna e instrutores experientes, garantindo que cada aluno 
+                                desenvolva as habilidades necessárias para dirigir com segurança.
+                            </p>
+                            
+                            <div class="grid grid-cols-2 gap-6">
+                                <div class="text-center p-4 bg-gradient-to-r from-primary to-secondary text-white rounded-xl">
+                                    <div class="text-2xl font-bold">100%</div>
+                                    <div class="text-sm">Aprovação</div>
+                                </div>
+                                <div class="text-center p-4 bg-gradient-to-r from-secondary to-accent text-white rounded-xl">
+                                    <div class="text-2xl font-bold">24/7</div>
+                                    <div class="text-sm">Suporte</div>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div class="relative">
+                            <div class="bg-gradient-to-br from-primary to-secondary p-8 rounded-3xl shadow-2xl">
+                                <img src="keys/auto-escola-guaibim?prompt=Modern%20driving%20school%20building%20Auto%20Escola%20Guaibim%20Valença%20Bahia%2C%20professional%20facade%2C%20clean%20modern%20architecture" 
+                                     alt="Auto Escola Guaibim" 
+                                     class="w-full rounded-2xl shadow-lg">
+                            </div>
+                            <div class="absolute -bottom-6 -right-6 bg-white p-6 rounded-2xl shadow-xl">
+                                <div class="text-center">
+                                    <div class="text-2xl font-bold text-primary">Guaibim</div>
+                                    <div class="text-sm text-gray-600">Valença - BA</div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- Mission Values -->
+                    <div class="mt-20">
+                        <h3 class="text-3xl font-bold text-center mb-12 text-dark">Nossos Valores</h3>
+                        <div class="grid md:grid-cols-3 gap-8">
+                            <div class="text-center p-6">
+                                <div class="w-16 h-16 mx-auto mb-4 bg-gradient-to-r from-primary to-secondary rounded-full flex items-center justify-center">
+                                    <i class="fas fa-shield-alt text-white text-xl"></i>
+                                </div>
+                                <h4 class="text-xl font-bold mb-3 text-dark">Segurança</h4>
+                                <p class="text-gray-600">Priorizamos a segurança em todas as etapas do aprendizado</p>
+                            </div>
+                            
+                            <div class="text-center p-6">
+                                <div class="w-16 h-16 mx-auto mb-4 bg-gradient-to-r from-secondary to-accent rounded-full flex items-center justify-center">
+                                    <i class="fas fa-heart text-white text-xl"></i>
+                                </div>
+                                <h4 class="text-xl font-bold mb-3 text-dark">Compromisso</h4>
+                                <p class="text-gray-600">Dedicação total ao sucesso de cada aluno</p>
+                            </div>
+                            
+                            <div class="text-center p-6">
+                                <div class="w-16 h-16 mx-auto mb-4 bg-gradient-to-r from-accent to-primary rounded-full flex items-center justify-center">
+                                    <i class="fas fa-star text-white text-xl"></i>
+                                </div>
+                                <h4 class="text-xl font-bold mb-3 text-dark">Excelência</h4>
+                                <p class="text-gray-600">Padrão de qualidade superior em tudo que fazemos</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Serviços Section -->
+        <section id="servicos" class="page-section hidden">
+            <div class="w-full py-20 bg-light">
+                <div class="container mx-auto px-6">
+                    <div class="text-center mb-16">
+                        <h2 class="text-4xl md:text-5xl font-bold text-dark mb-4">
+                            Nossos <span class="gradient-text">Serviços</span>
+                        </h2>
+                        <div class="section-divider w-24 mx-auto mb-6"></div>
+                        <p class="text-xl text-gray-600 max-w-2xl mx-auto">
+                            Oferecemos todos os serviços para sua habilitação
+                        </p>
+                    </div>
+                    
+                    <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+                        <!-- Primeira Habilitação -->
+                        <div class="card-hover bg-white p-8 rounded-2xl shadow-lg">
+                            <div class="w-16 h-16 mb-6 bg-gradient-to-r from-primary to-secondary rounded-xl flex items-center justify-center">
+                                <i class="fas fa-id-card text-white text-2xl"></i>
+                            </div>
+                            <h3 class="text-xl font-bold mb-4 text-dark">1ª Habilitação</h3>
+                            <p class="text-gray-600 mb-6">Categoria A, B ou AB. Processo completo para sua primeira CNH</p>
+                            <ul class="text-sm text-gray-500 space-y-2">
+                                <li><i class="fas fa-check text-accent mr-2"></i>Aulas teóricas completas</li>
+                                <li><i class="fas fa-check text-accent mr-2"></i>Aulas práticas personalizadas</li>
+                                <li><i class="fas fa-check text-accent mr-2"></i>Material didático moderno</li>
+                                <li><i class="fas fa-check text-accent mr-2"></i>Acompanhamento até aprovação</li>
+                            </ul>
+                        </div>
+
+                        <!-- Adição de Categoria -->
+                        <div class="card-hover bg-white p-8 rounded-2xl shadow-lg">
+                            <div class="w-16 h-16 mb-6 bg-gradient-to-r from-secondary to-accent rounded-xl flex items-center justify-center">
+                                <i class="fas fa-plus text-white text-2xl"></i>
+                            </div>
+                            <h3 class="text-xl font-bold mb-4 text-dark">Adição de Categoria</h3>
+                            <p class="text-gray-600 mb-6">Adicione novas categorias à sua habilitação</p>
+                            <ul class="text-sm text-gray-500 space-y-2">
+                                <li><i class="fas fa-check text-accent mr-2"></i>Processo simplificado</li>
+                                <li><i class="fas fa-check text-accent mr-2"></i>Aulas específicas por categoria</li>
+                                <li><i class="fas fa-check text-accent mr-2"></i>Documentação facilitada</li>
+                                <li><i class="fas fa-check text-accent mr-2"></i>Suporte completo</li>
+                            </ul>
+                        </div>
+
+                        <!-- Mudança de Categoria -->
+                        <div class="card-hover bg-white p-8 rounded-2xl shadow-lg">
+                            <div class="w-16 h-16 mb-6 bg-gradient-to-r from-accent to-primary rounded-xl flex items-center justify-center">
+                                <i class="fas fa-exchange-alt text-white text-2xl"></i>
+                            </div>
+                            <h3 class="text-xl font-bold mb-4 text-dark">Mudança de Categoria</h3>
+                            <p class="text-gray-600 mb-6">Altere sua categoria de habilitação conforme necessário</p>
+                            <ul class="text-sm text-gray-500 space-y-2">
+                                <li><i class="fas fa-check text-accent mr-2"></i>Orientação especializada</li>
+                                <li><i class="fas fa-check text-accent mr-2"></i>Processo ágil</li>
+                                <li><i class="fas fa-check text-accent mr-2"></i>Documentos organizados</li>
+                                <li><i class="fas fa-check text-accent mr-2"></i>Acompanhamento total</li>
+                            </ul>
+                        </div>
+
+                        <!-- Reciclagem -->
+                        <div class="card-hover bg-white p-8 rounded-2xl shadow-lg">
+                            <div class="w-16 h-16 mb-6 bg-gradient-to-r from-primary to-secondary rounded-xl flex items-center justify-center">
+                                <i class="fas fa-redo text-white text-2xl"></i>
+                            </div>
+                            <h3 class="text-xl font-bold mb-4 text-dark">Reciclagem</h3>
+                            <p class="text-gray-600 mb-6">Curso para recuperar o direito de dirigir</p>
+                            <ul class="text-sm text-gray-500 space-y-2">
+                                <li><i class="fas fa-check text-accent mr-2"></i>30 horas de curso</li>
+                                <li><i class="fas fa-check text-accent mr-2"></i>Horários flexíveis</li>
+                                <li><i class="fas fa-check text-accent mr-2"></i>Material atualizado</li>
+                                <li><i class="fas fa-check text-accent mr-2"></i>Instrutores especializados</li>
+                            </ul>
+                        </div>
+
+                        <!-- Renovação -->
+                        <div class="card-hover bg-white p-8 rounded-2xl shadow-lg">
+                            <div class="w-16 h-16 mb-6 bg-gradient-to-r from-secondary to-accent rounded-xl flex items-center justify-center">
+                                <i class="fas fa-sync-alt text-white text-2xl"></i>
+                            </div>
+                            <h3 class="text-xl font-bold mb-4 text-dark">Renovação</h3>
+                            <p class="text-gray-600 mb-6">Renovação rápida e sem complicações</p>
+                            <ul class="text-sm text-gray-500 space-y-2">
+                                <li><i class="fas fa-check text-accent mr-2"></i>Processo agilizado</li>
+                                <li><i class="fas fa-check text-accent mr-2"></i>Exames médicos</li>
+                                <li><i class="fas fa-check text-accent mr-2"></i>Teste psicotécnico</li>
+                                <li><i class="fas fa-check text-accent mr-2"></i>Documentação completa</li>
+                            </ul>
+                        </div>
+
+                        <!-- Simulados -->
+                        <div class="card-hover bg-white p-8 rounded-2xl shadow-lg">
+                            <div class="w-16 h-16 mb-6 bg-gradient-to-r from-accent to-primary rounded-xl flex items-center justify-center">
+                                <i class="fas fa-laptop text-white text-2xl"></i>
+                            </div>
+                            <h3 class="text-xl font-bold mb-4 text-dark">Simulados Online</h3>
+                            <p class="text-gray-600 mb-6">Prepare-se com questões atualizadas</p>
+                            <ul class="text-sm text-gray-500 space-y-2">
+                                <li><i class="fas fa-check text-accent mr-2"></i>Acesso 24/7</li>
+                                <li><i class="fas fa-check text-accent mr-2"></i>Questões do DETRAN</li>
+                                <li><i class="fas fa-check text-accent mr-2"></i>Relatórios de progresso</li>
+                                <li><i class="fas fa-check text-accent mr-2"></i>Suporte via WhatsApp</li>
+                            </ul>
+                        </div>
+                    </div>
+
+                    <div class="text-center mt-16">
+                        <a href="https://wa.me/c/557599252324" target="_blank" class="btn-gradient text-white px-8 py-4 rounded-full text-lg font-semibold hover:shadow-2xl transition-all">
+                            <i class="fab fa-whatsapp mr-2"></i>
+                            Solicite um Orçamento
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Galeria Section -->
+        <section id="galeria" class="page-section hidden">
+            <div class="w-full py-20">
+                <div class="container mx-auto px-6">
+                    <div class="text-center mb-16">
+                        <h2 class="text-4xl md:text-5xl font-bold text-dark mb-4">
+                            Nossa <span class="gradient-text">Estrutura</span>
+                        </h2>
+                        <div class="section-divider w-24 mx-auto mb-6"></div>
+                        <p class="text-xl text-gray-600">Conheça nossas instalações modernas</p>
+                    </div>
+                    
+                    <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+                        <!-- Fachada -->
+                        <div class="card-hover bg-white rounded-2xl shadow-lg overflow-hidden">
+                            <div class="relative">
+                                <img src="keys/guaibim-fachada?prompt=Auto%20Escola%20Guaibim%20modern%20building%20facade%20in%20Valença%20Bahia%2C%20professional%20signage%2C%20clean%20architecture" 
+                                     alt="Fachada Auto Escola Guaibim" 
+                                     class="w-full h-64 object-cover">
+                                <div class="absolute inset-0 bg-gradient-to-t from-black/50 to-transparent"></div>
+                                <div class="absolute bottom-4 left-4 text-white">
+                                    <h3 class="text-lg font-bold">Nossa Fachada</h3>
+                                    <p class="text-sm">Av ACM, S/N - Jacaré</p>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Sala de Aula -->
+                        <div class="card-hover bg-white rounded-2xl shadow-lg overflow-hidden">
+                            <div class="relative">
+                                <img src="keys/guaibim-sala?prompt=Modern%20driving%20school%20classroom%20with%20students%2C%20projector%2C%20educational%20materials%2C%20bright%20environment" 
+                                     alt="Sala de aula" 
+                                     class="w-full h-64 object-cover">
+                                <div class="absolute inset-0 bg-gradient-to-t from-black/50 to-transparent"></div>
+                                <div class="absolute bottom-4 left-4 text-white">
+                                    <h3 class="text-lg font-bold">Sala de Aula</h3>
+                                    <p class="text-sm">Ambiente moderno e confortável</p>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Frota -->
+                        <div class="card-hover bg-white rounded-2xl shadow-lg overflow-hidden">
+                            <div class="relative">
+                                <img src="keys/guaibim-frota?prompt=Modern%20driving%20school%20car%20fleet%20parked%20organized%2C%20clean%20vehicles%20with%20dual%20controls%2C%20professional%20appearance" 
+                                     alt="Frota de veículos" 
+                                     class="w-full h-64 object-cover">
+                                <div class="absolute inset-0 bg-gradient-to-t from-black/50 to-transparent"></div>
+                                <div class="absolute bottom-4 left-4 text-white">
+                                    <h3 class="text-lg font-bold">Nossa Frota</h3>
+                                    <p class="text-sm">Veículos modernos e seguros</p>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Aula Prática -->
+                        <div class="card-hover bg-white rounded-2xl shadow-lg overflow-hidden">
+                            <div class="relative">
+                                <img src="keys/guaibim-aula?prompt=Driving%20lesson%20with%20instructor%20and%20student%20in%20car%2C%20professional%20teaching%2C%20Valença%20Bahia%20setting" 
+                                     alt="Aula prática" 
+                                     class="w-full h-64 object-cover">
+                                <div class="absolute inset-0 bg-gradient-to-t from-black/50 to-transparent"></div>
+                                <div class="absolute bottom-4 left-4 text-white">
+                                    <h3 class="text-lg font-bold">Aulas Práticas</h3>
+                                    <p class="text-sm">Instrutores qualificados</p>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Recepção -->
+                        <div class="card-hover bg-white rounded-2xl shadow-lg overflow-hidden">
+                            <div class="relative">
+                                <img src="keys/guaibim-recepcao?prompt=Modern%20driving%20school%20reception%20area%2C%20clean%20design%2C%20comfortable%20seating%2C%20professional%20atmosphere" 
+                                     alt="Recepção" 
+                                     class="w-full h-64 object-cover">
+                                <div class="absolute inset-0 bg-gradient-to-t from-black/50 to-transparent"></div>
+                                <div class="absolute bottom-4 left-4 text-white">
+                                    <h3 class="text-lg font-bold">Recepção</h3>
+                                    <p class="text-sm">Atendimento personalizado</p>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Área de Descanso -->
+                        <div class="card-hover bg-white rounded-2xl shadow-lg overflow-hidden">
+                            <div class="relative">
+                                <img src="keys/guaibim-descanso?prompt=Comfortable%20waiting%20area%20in%20driving%20school%2C%20modern%20furniture%2C%20relaxing%20environment%2C%20magazines" 
+                                     alt="Área de descanso" 
+                                     class="w-full h-64 object-cover">
+                                <div class="absolute inset-0 bg-gradient-to-t from-black/50 to-transparent"></div>
+                                <div class="absolute bottom-4 left-4 text-white">
+                                    <h3 class="text-lg font-bold">Área de Descanso</h3>
+                                    <p class="text-sm">Conforto para nossos alunos</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Contato Section -->
+        <section id="contato" class="page-section hidden">
+            <div class="w-full py-20 bg-light">
+                <div class="container mx-auto px-6">
+                    <div class="text-center mb-16">
+                        <h2 class="text-4xl md:text-5xl font-bold text-dark mb-4">
+                            Entre em <span class="gradient-text">Contato</span>
+                        </h2>
+                        <div class="section-divider w-24 mx-auto mb-6"></div>
+                        <p class="text-xl text-gray-600">Estamos prontos para atender você</p>
+                    </div>
+                    
+                    <div class="grid md:grid-cols-2 gap-12 max-w-6xl mx-auto">
+                        <!-- Informações de Contato -->
+                        <div class="space-y-8">
+                            <!-- Localização -->
+                            <div class="card-hover bg-white p-8 rounded-2xl shadow-lg">
+                                <div class="flex items-center mb-6">
+                                    <div class="w-12 h-12 bg-gradient-to-r from-primary to-secondary rounded-xl flex items-center justify-center mr-4">
+                                        <i class="fas fa-map-marker-alt text-white text-xl"></i>
+                                    </div>
+                                    <h3 class="text-2xl font-bold text-dark">Localização</h3>
+                                </div>
+                                <div class="text-gray-600 space-y-2">
+                                    <p class="flex items-center">
+                                        <i class="fas fa-map-marker-alt text-secondary mr-3"></i>
+                                        Av ACM, S/N, Jacaré
+                                    </p>
+                                    <p class="flex items-center">
+                                        <i class="fas fa-city text-secondary mr-3"></i>
+                                        Valença - Bahia
+                                    </p>
+                                </div>
+                            </div>
+
+                            <!-- Contatos -->
+                            <div class="card-hover bg-white p-8 rounded-2xl shadow-lg">
+                                <div class="flex items-center mb-6">
+                                    <div class="w-12 h-12 bg-gradient-to-r from-secondary to-accent rounded-xl flex items-center justify-center mr-4">
+                                        <i class="fas fa-phone text-white text-xl"></i>
+                                    </div>
+                                    <h3 class="text-2xl font-bold text-dark">Contatos</h3>
+                                </div>
+                                <div class="space-y-4">
+                                    <div class="flex items-center justify-between p-4 bg-light rounded-lg">
+                                        <div>
+                                            <p class="font-semibold text-dark">WhatsApp Principal</p>
+                                            <p class="text-gray-600">(75) 9 9925-2324</p>
+                                        </div>
+                                        <a href="https://wa.me/c/557599252324" 
+                                           target="_blank" 
+                                           class="bg-green-500 text-white px-4 py-2 rounded-lg hover:bg-green-600 transition-colors">
+                                            <i class="fab fa-whatsapp mr-1"></i>
+                                            Chamar
+                                        </a>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!-- Redes Sociais -->
+                            <div class="card-hover bg-white p-8 rounded-2xl shadow-lg">
+                                <div class="flex items-center mb-6">
+                                    <div class="w-12 h-12 bg-gradient-to-r from-accent to-primary rounded-xl flex items-center justify-center mr-4">
+                                        <i class="fas fa-share-alt text-white text-xl"></i>
+                                    </div>
+                                    <h3 class="text-2xl font-bold text-dark">Redes Sociais</h3>
+                                </div>
+                                <div class="flex space-x-4">
+                                    <a href="https://instagram.com/autoescolaguaibim" 
+                                       target="_blank" 
+                                       class="bg-gradient-to-r from-pink-500 to-purple-600 text-white p-4 rounded-xl hover:shadow-lg transition-all">
+                                        <i class="fab fa-instagram text-xl"></i>
+                                    </a>
+                                    <a href="https://wa.me/c/557599252324" 
+                                       target="_blank" 
+                                       class="bg-green-500 text-white p-4 rounded-xl hover:bg-green-600 transition-all">
+                                        <i class="fab fa-whatsapp text-xl"></i>
+                                    </a>
+                                </div>
+                                <p class="text-gray-600 mt-4">
+                                    <i class="fab fa-instagram text-secondary mr-2"></i>
+                                    @autoescolaguaibim
+                                </p>
+                            </div>
+                        </div>
+
+                        <!-- Formulário de Contato / CTA -->
+                        <div class="space-y-8">
+                            <!-- Call to Action -->
+                            <div class="bg-gradient-to-br from-primary to-secondary p-8 rounded-2xl text-white">
+                                <h3 class="text-2xl font-bold mb-6">Pronto para começar?</h3>
+                                <p class="mb-6 opacity-90">
+                                    Entre em contato agora mesmo e dê o primeiro passo para conquistar sua CNH!
+                                </p>
+                                
+                                <div class="space-y-4">
+                                    <a href="https://wa.me/c/557599252324" 
+                                       target="_blank" 
+                                       class="w-full bg-white text-primary py-4 px-6 rounded-xl font-bold hover:bg-gray-100 transition-colors flex items-center justify-center">
+                                        <i class="fab fa-whatsapp mr-2 text-green-500"></i>
+                                        Falar no WhatsApp
+                                    </a>
+                                    
+                                    <a href="https://instagram.com/autoescolaguaibim" 
+                                       target="_blank" 
+                                       class="w-full bg-white/20 text-white py-4 px-6 rounded-xl font-bold hover:bg-white/30 transition-colors flex items-center justify-center">
+                                        <i class="fab fa-instagram mr-2"></i>
+                                        Seguir no Instagram
+                                    </a>
+                                </div>
+                            </div>
+
+                            <!-- Serviços Rápidos -->
+                            <div class="card-hover bg-white p-8 rounded-2xl shadow-lg">
+                                <h3 class="text-2xl font-bold mb-6 text-dark">Serviços Disponíveis</h3>
+                                <div class="space-y-4">
+                                    <div class="flex items-center p-3 bg-light rounded-lg">
+                                        <i class="fas fa-id-card text-primary mr-3"></i>
+                                        <span class="font-medium">1ª Habilitação A, B, AB</span>
+                                    </div>
+                                    <div class="flex items-center p-3 bg-light rounded-lg">
+                                        <i class="fas fa-plus text-secondary mr-3"></i>
+                                        <span class="font-medium">Adição de Categoria</span>
+                                    </div>
+                                    <div class="flex items-center p-3 bg-light rounded-lg">
+                                        <i class="fas fa-exchange-alt text-accent mr-3"></i>
+                                        <span class="font-medium">Mudança de Categoria</span>
+                                    </div>
+                                    <div class="flex items-center p-3 bg-light rounded-lg">
+                                        <i class="fas fa-redo text-primary mr-3"></i>
+                                        <span class="font-medium">Reciclagem</span>
+                                    </div>
+                                    <div class="flex items-center p-3 bg-light rounded-lg">
+                                        <i class="fas fa-sync-alt text-secondary mr-3"></i>
+                                        <span class="font-medium">Renovação</span>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!-- Horários -->
+                            <div class="card-hover bg-white p-8 rounded-2xl shadow-lg">
+                                <div class="flex items-center mb-6">
+                                    <div class="w-12 h-12 bg-gradient-to-r from-primary to-secondary rounded-xl flex items-center justify-center mr-4">
+                                        <i class="fas fa-clock text-white text-xl"></i>
+                                    </div>
+                                    <h3 class="text-2xl font-bold text-dark">Horários</h3>
+                                </div>
+                                <div class="space-y-2 text-gray-600">
+                                    <p><strong>Segunda a Sexta:</strong> 8h às 18h</p>
+                                    <p><strong>Sábado:</strong> 8h às 12h</p>
+                                    <p><strong>WhatsApp:</strong> 24/7</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Matrícula Section -->
+        <section id="matricula" class="page-section hidden">
+            <div class="w-full py-20">
+                <div class="container mx-auto px-6">
+                    <div class="text-center mb-16">
+                        <h2 class="text-4xl md:text-5xl font-bold text-dark mb-4">
+                            Faça sua <span class="gradient-text">Matrícula</span>
+                        </h2>
+                        <div class="section-divider w-24 mx-auto mb-6"></div>
+                        <p class="text-xl text-gray-600">Comece sua jornada para conquistar a CNH</p>
+                    </div>
+                    
+                    <div class="max-w-4xl mx-auto">
+                        <div class="grid md:grid-cols-2 gap-12">
+                            <!-- Formulário -->
+                            <div class="bg-white p-8 rounded-2xl shadow-lg">
+                                <h3 class="text-2xl font-bold mb-6 text-dark">Dados para Matrícula</h3>
+                                
+                                <form id="matricula-form" class="space-y-6">
+                                    <div>
+                                        <label class="block text-sm font-medium text-gray-700 mb-2">Nome Completo *</label>
+                                        <input type="text" id="nome" required 
+                                               class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-primary focus:border-transparent">
+                                    </div>
+
+                                    <div class="grid md:grid-cols-2 gap-4">
+                                        <div>
+                                            <label class="block text-sm font-medium text-gray-700 mb-2">CPF *</label>
+                                            <input type="text" id="cpf" required 
+                                                   class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-primary focus:border-transparent" 
+                                                   placeholder="000.000.000-00">
+                                        </div>
+                                        <div>
+                                            <label class="block text-sm font-medium text-gray-700 mb-2">WhatsApp *</label>
+                                            <input type="tel" id="telefone" required 
+                                                   class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-primary focus:border-transparent" 
+                                                   placeholder="(75) 99999-9999">
+                                        </div>
+                                    </div>
+
+                                    <div>
+                                        <label class="block text-sm font-medium text-gray-700 mb-2">E-mail</label>
+                                        <input type="email" id="email" 
+                                               class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-primary focus:border-transparent">
+                                    </div>
+
+                                    <div>
+                                        <label class="block text-sm font-medium text-gray-700 mb-2">Serviço Desejado *</label>
+                                        <select id="servico" required 
+                                                class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-primary focus:border-transparent">
+                                            <option value="">Selecione o serviço</option>
+                                            <option value="primeira-a">1ª Habilitação - Categoria A</option>
+                                            <option value="primeira-b">1ª Habilitação - Categoria B</option>
+                                            <option value="primeira-ab">1ª Habilitação - Categoria AB</option>
+                                            <option value="adicao">Adição de Categoria</option>
+                                            <option value="mudanca">Mudança de Categoria</option>
+                                            <option value="reciclagem">Reciclagem</option>
+                                            <option value="renovacao">Renovação</option>
+                                        </select>
+                                    </div>
+
+                                    <div>
+                                        <label class="block text-sm font-medium text-gray-700 mb-2">Como conheceu a Guaibim?</label>
+                                        <select class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-primary focus:border-transparent">
+                                            <option value="instagram">Instagram @autoescolaguaibim</option>
+                                            <option value="indicacao">Indicação de amigos</option>
+                                            <option value="google">Pesquisa no Google</option>
+                                            <option value="whatsapp">WhatsApp</option>
+                                            <option value="outros">Outros</option>
+                                        </select>
+                                    </div>
+
+                                    <div>
+                                        <label class="block text-sm font-medium text-gray-700 mb-2">Observações</label>
+                                        <textarea rows="4" 
+                                                  class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-primary focus:border-transparent resize-none" 
+                                                  placeholder="Conte-nos sobre sua experiência com direção, horário de preferência..."></textarea>
+                                    </div>
+
+                                    <button type="submit" 
+                                            class="w-full btn-gradient text-white py-4 rounded-lg text-xl font-bold hover:shadow-2xl transition-all">
+                                        <i class="fas fa-paper-plane mr-2"></i>
+                                        Enviar Matrícula
+                                    </button>
+                                </form>
+
+                                <!-- Mensagem de Sucesso -->
+                                <div id="success-message" class="hidden mt-6 p-4 bg-accent/20 border border-accent text-accent rounded-lg">
+                                    <i class="fas fa-check-circle mr-2"></i>
+                                    <strong>Matrícula enviada!</strong> Entraremos em contato em breve via WhatsApp.
+                                </div>
+                            </div>
+
+                            <!-- Informações -->
+                            <div class="space-y-8">
+                                <!-- Vantagens -->
+                                <div class="bg-gradient-to-br from-primary to-secondary text-white p-8 rounded-2xl">
+                                    <h4 class="text-2xl font-bold mb-6">
+                                        <i class="fas fa-star mr-2"></i>
+                                        Por que escolher a Guaibim?
+                                    </h4>
+                                    <ul class="space-y-4">
+                                        <li class="flex items-center">
+                                            <i class="fas fa-check-circle text-secondary mr-3"></i>
+                                            Localização estratégica em Valença-BA
+                                        </li>
+                                        <li class="flex items-center">
+                                            <i class="fas fa-check-circle text-secondary mr-3"></i>
+                                            Suporte 24/7 via WhatsApp
+                                        </li>
+                                        <li class="flex items-center">
+                                            <i class="fas fa-check-circle text-secondary mr-3"></i>
+                                            Instrutores qualificados e experientes
+                                        </li>
+                                        <li class="flex items-center">
+                                            <i class="fas fa-check-circle text-secondary mr-3"></i>
+                                            Estrutura moderna e confortável
+                                        </li>
+                                        <li class="flex items-center">
+                                            <i class="fas fa-check-circle text-secondary mr-3"></i>
+                                            Todos os serviços de habilitação
+                                        </li>
+                                    </ul>
+                                </div>
+
+                                <!-- Processo -->
+                                <div class="bg-white p-8 rounded-2xl shadow-lg">
+                                    <h4 class="text-2xl font-bold mb-6 text-dark">
+                                        <i class="fas fa-route mr-2 text-secondary"></i>
+                                        Como Funciona
+                                    </h4>
+                                    <div class="space-y-4">
+                                        <div class="flex items-center">
+                                            <div class="w-8 h-8 bg-gradient-to-r from-primary to-secondary rounded-full flex items-center justify-center text-white font-bold mr-4">1</div>
+                                            <span class="text-gray-600">Preencha o formulário de matrícula</span>
+                                        </div>
+                                        <div class="flex items-center">
+                                            <div class="w-8 h-8 bg-gradient-to-r from-primary to-secondary rounded-full flex items-center justify-center text-white font-bold mr-4">2</div>
+                                            <span class="text-gray-600">Receba contato via WhatsApp</span>
+                                        </div>
+                                        <div class="flex items-center">
+                                            <div class="w-8 h-8 bg-gradient-to-r from-primary to-secondary rounded-full flex items-center justify-center text-white font-bold mr-4">3</div>
+                                            <span class="text-gray-600">Finalize documentação</span>
+                                        </div>
+                                        <div class="flex items-center">
+                                            <div class="w-8 h-8 bg-gradient-to-r from-primary to-secondary rounded-full flex items-center justify-center text-white font-bold mr-4">4</div>
+                                            <span class="text-gray-600">Comece suas aulas!</span>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <!-- Contato Direto -->
+                                <div class="text-center bg-light p-8 rounded-2xl">
+                                    <h4 class="text-xl font-bold mb-4 text-dark">Prefere falar diretamente?</h4>
+                                    <a href="https://wa.me/c/557599252324" 
+                                       target="_blank"
+                                       class="bg-green-500 text-white px-8 py-4 rounded-full hover:bg-green-600 transition-colors font-bold shadow-lg hover:shadow-xl">
+                                        <i class="fab fa-whatsapp mr-2"></i>
+                                        WhatsApp: (75) 9 9925-2324
+                                    </a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- Footer -->
+    <footer class="bg-dark text-white py-16">
+        <div class="container mx-auto px-6">
+            <div class="grid md:grid-cols-4 gap-8">
+                <!-- Logo e Descrição -->
+                <div class="col-span-2">
+                    <div class="flex items-center space-x-3 mb-6">
+                        <div class="w-12 h-12 bg-gradient-to-r from-primary to-secondary rounded-full flex items-center justify-center">
+                            <i class="fas fa-steering-wheel text-white text-xl"></i>
+                        </div>
+                        <div>
+                            <h3 class="text-xl font-bold">Auto Escola Guaibim</h3>
+                            <p class="text-gray-300">Sua CNH com qualidade e segurança</p>
+                        </div>
+                    </div>
+                    <p class="text-gray-300 mb-6 leading-relaxed">
+                        Auto Escola Guaibim em Valença-BA. Oferecemos todos os serviços de habilitação com qualidade, 
+                        segurança e atendimento personalizado via WhatsApp 24/7.
+                    </p>
+                    <div class="flex space-x-4">
+                        <a href="https://instagram.com/autoescolaguaibim" target="_blank" class="text-gray-300 hover:text-secondary text-2xl transition-colors">
+                            <i class="fab fa-instagram"></i>
+                        </a>
+                        <a href="https://wa.me/c/557599252324" target="_blank" class="text-gray-300 hover:text-secondary text-2xl transition-colors">
+                            <i class="fab fa-whatsapp"></i>
+                        </a>
+                    </div>
+                </div>
+
+                <!-- Links Rápidos -->
+                <div>
+                    <h4 class="text-lg font-bold mb-6">Links Rápidos</h4>
+                    <ul class="space-y-3">
+                        <li><a href="#inicio" class="nav-link text-gray-300 hover:text-secondary transition-colors">Início</a></li>
+                        <li><a href="#sobre" class="nav-link text-gray-300 hover:text-secondary transition-colors">Sobre</a></li>
+                        <li><a href="#servicos" class="nav-link text-gray-300 hover:text-secondary transition-colors">Serviços</a></li>
+                        <li><a href="#galeria" class="nav-link text-gray-300 hover:text-secondary transition-colors">Galeria</a></li>
+                        <li><a href="#contato" class="nav-link text-gray-300 hover:text-secondary transition-colors">Contato</a></li>
+                        <li><a href="#matricula" class="nav-link text-gray-300 hover:text-secondary transition-colors">Matrícula</a></li>
+                    </ul>
+                </div>
+
+                <!-- Contato -->
+                <div>
+                    <h4 class="text-lg font-bold mb-6">Contato</h4>
+                    <ul class="space-y-3 text-gray-300">
+                        <li class="flex items-center">
+                            <i class="fas fa-map-marker-alt mr-3 text-secondary"></i>
+                            <div>
+                                <div>Av ACM, S/N</div>
+                                <div>Jacaré - Valença/BA</div>
+                            </div>
+                        </li>
+                        <li class="flex items-center">
+                            <i class="fab fa-whatsapp mr-3 text-secondary"></i>
+                            (75) 9 9925-2324
+                        </li>
+                        <li class="flex items-center">
+                            <i class="fab fa-instagram mr-3 text-secondary"></i>
+                            @autoescolaguaibim
+                        </li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="border-t border-gray-700 mt-12 pt-8">
+                <div class="text-center text-gray-300">
+                    <p>&copy; 2024 Auto Escola Guaibim. Todos os direitos reservados.</p>
+                    <p class="text-sm mt-2">Valença - Bahia | WhatsApp: (75) 9 9925-2324 | Instagram: @autoescolaguaibim</p>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <script type="module">
+        // Menu Mobile
+        const mobileMenuBtn = document.getElementById('mobile-menu-btn');
+        const mobileMenu = document.getElementById('mobile-menu');
+
+        mobileMenuBtn.addEventListener('click', () => {
+            mobileMenu.classList.toggle('hidden');
+        });
+
+        // Navegação SPA
+        const navLinks = document.querySelectorAll('.nav-link');
+        const sections = document.querySelectorAll('.page-section');
+
+        function showSection(targetId) {
+            sections.forEach(section => {
+                if (section.id === targetId) {
+                    section.classList.remove('hidden');
+                } else {
+                    section.classList.add('hidden');
+                }
+            });
+
+            window.location.hash = targetId;
+            mobileMenu.classList.add('hidden');
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+        }
+
+        navLinks.forEach(link => {
+            link.addEventListener('click', (e) => {
+                e.preventDefault();
+                const targetId = link.getAttribute('href').substring(1);
+                showSection(targetId);
+            });
+        });
+
+        function handleInitialLoad() {
+            const hash = window.location.hash.substring(1);
+            if (hash && document.getElementById(hash)) {
+                showSection(hash);
+            } else {
+                showSection('inicio');
+            }
+        }
+
+        window.addEventListener('popstate', handleInitialLoad);
+        handleInitialLoad();
+
+        // Formulário de Matrícula
+        const form = document.getElementById('matricula-form');
+        const successMessage = document.getElementById('success-message');
+
+        form.addEventListener('submit', (e) => {
+            e.preventDefault();
+            
+            const nome = document.getElementById('nome').value;
+            const cpf = document.getElementById('cpf').value;
+            const telefone = document.getElementById('telefone').value;
+            const servico = document.getElementById('servico').value;
+            
+            if (!nome || !cpf || !telefone || !servico) {
+                alert('Por favor, preencha todos os campos obrigatórios.');
+                return;
+            }
+
+            // Cria mensagem para WhatsApp
+            const message = `Olá! Gostaria de fazer minha matrícula na Auto Escola Guaibim:
+            
+*Dados:*
+Nome: ${nome}
+CPF: ${cpf}
+Telefone: ${telefone}
+Serviço: ${servico}
+
+Aguardo contato!`;
+            
+            const whatsappUrl = `https://wa.me/557599252324?text=${encodeURIComponent(message)}`;
+            window.open(whatsappUrl, '_blank');
+
+            form.style.display = 'none';
+            successMessage.classList.remove('hidden');
+            
+            setTimeout(() => {
+                form.reset();
+                form.style.display = 'block';
+                successMessage.classList.add('hidden');
+            }, 5000);
+        });
+
+        // Máscaras de formatação
+        const cpfInput = document.getElementById('cpf');
+        cpfInput.addEventListener('input', (e) => {
+            let value = e.target.value.replace(/\D/g, '');
+            if (value.length <= 11) {
+                value = value.replace(/(\d{3})(\d{3})(\d{3})(\d{2})/, '$1.$2.$3-$4');
+                e.target.value = value;
+            }
+        });
+
+        const phoneInput = document.getElementById('telefone');
+        phoneInput.addEventListener('input', (e) => {
+            let value = e.target.value.replace(/\D/g, '');
+            if (value.length <= 11) {
+                if (value.length <= 10) {
+                    value = value.replace(/(\d{2})(\d{4})(\d{4})/, '($1) $2-$3');
+                } else {
+                    value = value.replace(/(\d{2})(\d{5})(\d{4})/, '($1) $2-$3');
+                }
+                e.target.value = value;
+            }
+        });
+
+        // Scroll suave para links internos
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                const href = this.getAttribute('href');
+                if (href.startsWith('#') && href.length > 1) {
+                    e.preventDefault();
+                    const targetId = href.substring(1);
+                    if (document.getElementById(targetId)) {
+                        showSection(targetId);
+                    }
+                }
+            });
+        });
+
+        // Animações on scroll
+        const observerOptions = {
+            threshold: 0.1,
+            rootMargin: '0px 0px -100px 0px'
+        };
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.style.animationDelay = '0.2s';
+                    entry.target.classList.add('animate-fade-in');
+                }
+            });
+        }, observerOptions);
+
+        document.querySelectorAll('.card-hover').forEach(el => {
+            observer.observe(el);
+        });
+    </script>
+</body>
+</html>
